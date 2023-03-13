@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  interface user {
+    name: string;
+    age?: number;
+    birthday?: any;
+  }
+
+  const prettyPrintWilder = (users: user[]) => {
+    users.map((user) => {
+      console.log(
+        `${user.name} is  ${
+          user.age
+            ? user.age
+            : new Date().getFullYear() - new Date(user.birthday).getFullYear()
+        } years old`
+      );
+    });
+  };
+
+  const wilders: user[] = [];
+  const user1 = { name: "Pierre", age: 23 };
+  const user2 = { name: "Paul", birthday: "10/02/1990" };
+  const user3 = { name: "Jacques", age: 25 };
+  wilders.push(user1);
+  wilders.push(user2);
+  wilders.push(user3);
+  console.log(wilders);
+
+  prettyPrintWilder(wilders);
+  return <div>ok</div>;
 }
 
 export default App;
